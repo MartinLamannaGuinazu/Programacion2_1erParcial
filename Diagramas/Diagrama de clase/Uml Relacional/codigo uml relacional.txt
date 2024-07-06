@@ -1,0 +1,56 @@
+@startuml
+
+skin rose
+
+hide members
+hide circle
+show fields
+
+class Consola{
+}
+
+
+class Control{
+}
+
+class SistemaGestion{
+}
+
+abstract class Usuario{
+}
+
+class Administrador{
+}
+
+class Empleado {
+}
+
+class Socio{
+}
+
+class Embarcacion {
+}
+
+class Amarre{
+}
+
+class Zona{
+
+}
+
+SistemaGestion <.u. Control
+
+Usuario <|-d- Empleado
+Usuario <|-l- Administrador
+Usuario <|-u- Socio
+
+SistemaGestion *-l-"*" Usuario: usuarios
+SistemaGestion *--"*" Embarcacion: embarcaciones
+SistemaGestion *----"*" Zona: zonas
+Embarcacion *-d- Amarre
+
+Zona *--"*" Embarcacion:embarcaciones
+Embarcacion *---- Zona
+Empleado *-- Zona
+
+@enduml

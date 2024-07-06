@@ -1,0 +1,57 @@
+@startuml
+
+skin rose
+skinparam classAttributeIconSize 0
+
+hide members
+hide circle
+show fields
+
+class Consola{
+--
++ boolean {static} leerBoolean (string);
++ void {static} escribir(Object);
++ void {static} escribirLN(Object);
++ String {static} leer();
++ String {static} leer(String);
++ int {static} leerEntero();
++ int {static} leerEntero(String);
++ double {static} leerDouble();
++ double {static} leerDouble(String);
++ char {static} leerCaracter();
++ char {static} leerCaracter(String);
+}
+
+
+class Control{
+--
++ void ejecutar();
+}
+
+class SistemaGestion {
+--
++ SistemaGestion();
+-int elegirOpcion(int);
++void serializar(String);
++SistemaGestion deSerializar(String);
++Embarcacion buscarEmbarcacion(String);
++void mostrarEmbarcacion(String);
++Boolean existeEmbarcacion(String);
++void agregarEmbarcacion(Embarcacion);
++void pedirDatosEmbarcacion();
++Amarre pedirDatosAmarre();
++void mostrarZonas();
++Zona buscarZona(char);
++Boolean existeZona(char);
++void agregarZona(Zona);
++Zona elegirZonaDisponible();
++Usuario buscarUsuario(String, String);
++void agregarUsuario(Usuario);
++Boolean existeUsuario(String, String);
++Boolean existeUsuario(Usuario);
++void pedirDatos()
+}
+
+
+
+@enduml

@@ -1,0 +1,52 @@
+@startuml
+
+skin rose
+
+(Ingresar mediante contraseña y nombre) as (Ingreso)
+
+left to right direction
+Usuario --> (Ingreso)
+(Ingreso) --> Administrador
+(Ingreso) --> Empleado
+(Ingreso) --> Socio
+
+rectangle "Menu de Administrador" {
+  usecase "Salir del sistema" as MA1
+  usecase "Crear [Usuario | Embarcacion | zona]" as MA2
+}
+
+rectangle "Submenu de creacion" {
+  usecase "Salir del Submenu" as SMA1
+  usecase "Crear zona" as SMA2
+  usecase "Crear embarcacion" as SMA3
+  usecase "Crear usuario" as SMA4
+}
+
+Administrador --> MA1
+Administrador --> MA2
+
+MA2 --> SMA1
+MA2 --> SMA2
+MA2 --> SMA3
+MA2 --> SMA4
+
+rectangle "Menu de Empleado" {
+  usecase "Salir del sistema" as ME1
+  usecase "Mostrar zonas" as ME2
+}
+
+
+
+Empleado --> ME1
+Empleado --> ME2
+
+rectangle "Menu de Socio" {
+  usecase "Salir del sistema" as MS1
+  usecase "Buscar embarcacion" as MS2
+}
+
+Socio --> MS1
+Socio --> MS2
+
+
+@enduml

@@ -1,0 +1,49 @@
+@startuml
+
+skin rose
+
+skinparam classAttributeIconSize 0
+
+hide members
+hide circle
+show fields
+
+
+abstract class Usuario{
+-String contrasena;
+-String nombreCompleto;
+--
++Usuario(String, String);
++String getNombre();
++String getContrasena();
++{abstract} Boolean proceder (SistemaGestion);
++{abstract} void mostrarMenu();
++void mostrarInformacion();
+}
+
+class Administrador{
+--
++Administrador(String, String);
+-mostrarSubMenuRegistrar(); 
+}
+
+class Empleado {
+-Zona zona;
+-String telefono;
+-String direccion;
+-String especialidad;
+--
++Empleado(Zona, String, String, String, String, String);
+}
+
+class Socio{
+-String DNI;
+-String direccion;
+-String telefono;
+-String fechaDeIngreso;
+--
+Socio(String DNI, String, String, String, String, String);
+}
+
+
+@enduml

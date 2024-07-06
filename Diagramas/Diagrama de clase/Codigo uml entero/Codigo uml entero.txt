@@ -1,0 +1,163 @@
+@startuml
+
+skin rose
+skinparam classAttributeIconSize 0
+
+hide members
+hide circle
+show fields
+
+class Consola{
+--
++ boolean {static} leerBoolean (string);
++ void {static} escribir(Object);
++ void {static} escribirLN(Object);
++ String {static} leer();
++ String {static} leer(String);
++ int {static} leerEntero();
++ int {static} leerEntero(String);
++ double {static} leerDouble();
++ double {static} leerDouble(String);
++ char {static} leerCaracter();
++ char {static} leerCaracter(String);
+}
+
+
+class Control{
+--
++ void ejecutar();
+}
+
+class SistemaGestion <<Serializable>>{
+--
++ SistemaGestion();
+-int elegirOpcion(int);
++void serializar(String);
++SistemaGestion deSerializar(String);
++Embarcacion buscarEmbarcacion(String);
++void mostrarEmbarcacion(String);
++Boolean existeEmbarcacion(String);
++void agregarEmbarcacion(Embarcacion);
++void pedirDatosEmbarcacion();
++Amarre pedirDatosAmarre();
++void mostrarZonas();
++Zona buscarZona(char);
++Boolean existeZona(char);
++void agregarZona(Zona);
++Zona elegirZonaDisponible();
++Usuario buscarUsuario(String, String);
++void agregarUsuario(Usuario);
++Boolean existeUsuario(String, String);
++Boolean existeUsuario(Usuario);
++void pedirDatos()
+}
+
+abstract class Usuario <<Serializable>>{
+-String contrasena;
+-String nombreCompleto;
+--
++Usuario(String, String);
++String getNombre();
++String getContrasena();
++{abstract} Boolean proceder (SistemaGestion);
++{abstract} void mostrarMenu();
++void mostrarInformacion();
+}
+
+class Administrador{
+--
++Administrador(String, String);
+-mostrarSubMenuRegistrar(); 
+}
+
+class Empleado {
+-Zona zona;
+-String telefono;
+-String direccion;
+-String especialidad;
+--
++Empleado(Zona, String, String, String, String, String);
+}
+
+class Socio{
+-String DNI;
+-String direccion;
+-String telefono;
+-String fechaDeIngreso;
+--
+Socio(String DNI, String, String, String, String, String);
+}
+
+class Embarcacion <<Serializable>>{
+-String matricula;
+-String nombreDeEmbarcacion;
+-String tipo;
+-String dimensiones;
+-Amarre amarre;
+-Zona zona;
+--
++Embarcacion(Zona, String, String, String, String, Amarre);
++String getMatricula();
++String getNombreDeEmbarcacion();
+-String getTipo();
++String getDimensiones();
++Amarre getAmarre();
++void mostrarInformacion();
++void mostrarInformacionReducida();
+}
+
+class Amarre <<Serializable>>{
+-int numeroDeAmarre;
+-double contadorDeLuz;
+-double contadorDeAgua;
+-boolean mantenimiento;
+-String fechaDeCompra;
+--
++Amarre(int, double, double, boolean, String);
++int getNumeroDeAmarre();
++double getContadorDeLuz();
++double getContadorDeAgua();
++boolean isMantenimiento();
++String getFechaDeCompra();
++void mostrarInformacion();
+}
+
+class Zona <<Serializable>>{
+-char letra;
+-String tipoDeBarco;
+-int cantidadBarcos;
+-double profundidad;
+-double anchoDeAmarre;
+--
++Zona(char, String, int, double, double, ArrayList<Embarcacion>)
++char getLetra();
++String getTipoDeBarco();
++int getCantidadBarcos();
++void agregarBarco(Embarcacion);
++void setCantidadBarcos(int cantidadBarcos);
++double getProfundidad();
++double getAnchoDeAmarre();
++void mostrarInformacion();
+}
+
+Usuario <|-l- Administrador
+Usuario <|-l- Empleado
+Usuario <|-l- Socio
+
+Usuario o-- Zona
+Usuario o-- Embarcacion
+Usuario o-- Amarre
+
+Zona -- Empleado
+Zona -- Embarcacion:-embarcaciones 
+Embarcacion *-- Amarre
+
+
+SistemaGestion o-- Amarre
+SistemaGestion o-- Embarcacion:-embarcaciones 
+SistemaGestion o-- Zona:-zonas
+SistemaGestion <.u. Control
+SistemaGestion o-- Usuario: -usuarios
+
+
+@enduml

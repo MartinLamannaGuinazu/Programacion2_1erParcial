@@ -1,0 +1,73 @@
+@startuml
+
+skin rose
+
+actor User
+participant "Administrador" as A
+participant "SistemaGestion" as B
+participant "Consola" as C
+participant "Socio" as S
+
+
+User -> A: proceder(SistemaGestion sistema)
+activate A
+
+loop
+A <- A: mostrarMenu();
+C <- A: leerCaracter();
+activate C
+A <-- C: opc.char
+deactivate C 
+
+
+alt opc "1";
+A <- A: mostrarSubMenuRegistrar();
+C <- A: leerCaracter();
+activate C
+A <-- C: opc2.char
+deactivate C
+
+B <- A: pedirDatos();
+activate B
+C <- B: leer(String); 
+activate C
+B <-- C: nombreCompleto.String;
+deactivate C
+C <- B: leer(String);
+activate C
+B <-- C: contraseña.String;
+deactivate C
+B <- B: existeUsuario();
+C <- B: leerCaracter();
+activate C
+B <-- C: opc.char
+deactivate C
+
+alt opc "1";
+C <- B: leer(String);
+activate C
+B <-- C: direccion.String;
+deactivate C
+C <- B: leer(String);
+activate C
+B <-- C: DNI.String;
+deactivate C
+C <- B: leer(String);
+activate C
+B <-- C: telefono.String;
+deactivate C
+C <- B: leer(String);
+activate C
+B <-- C: fechaDeIngreso.String;
+deactivate C
+S <- B: <<create>>
+
+B <- B: usuarios.add(Usuario)
+
+
+end
+deactivate B
+end
+end
+deactivate A
+@enduml

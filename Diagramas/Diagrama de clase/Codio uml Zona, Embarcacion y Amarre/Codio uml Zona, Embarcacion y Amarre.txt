@@ -1,0 +1,63 @@
+@startuml
+
+skin rose
+skinparam classAttributeIconSize 0
+
+hide members
+hide circle
+show fields
+
+
+class Embarcacion{
+-String matricula;
+-String nombreDeEmbarcacion;
+-String tipo;
+-String dimensiones;
+-Amarre amarre;
+-Zona zona;
+--
++Embarcacion(Zona, String, String, String, String, Amarre);
++String getMatricula();
++String getNombreDeEmbarcacion();
+-String getTipo();
++String getDimensiones();
++Amarre getAmarre();
++void mostrarInformacion();
++void mostrarInformacionReducida();
+}
+
+class Amarre{
+-int numeroDeAmarre;
+-double contadorDeLuz;
+-double contadorDeAgua;
+-boolean mantenimiento;
+-String fechaDeCompra;
+--
++Amarre(int, double, double, boolean, String);
++int getNumeroDeAmarre();
++double getContadorDeLuz();
++double getContadorDeAgua();
++boolean isMantenimiento();
++String getFechaDeCompra();
++void mostrarInformacion();
+}
+
+class Zona {
+-char letra;
+-String tipoDeBarco;
+-int cantidadBarcos;
+-double profundidad;
+-double anchoDeAmarre;
+--
++Zona(char, String, int, double, double, ArrayList<Embarcacion>)
++char getLetra();
++String getTipoDeBarco();
++int getCantidadBarcos();
++void agregarBarco(Embarcacion);
++void setCantidadBarcos(int cantidadBarcos);
++double getProfundidad();
++double getAnchoDeAmarre();
++void mostrarInformacion();
+}
+
+@enduml
